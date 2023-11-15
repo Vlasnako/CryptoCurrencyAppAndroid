@@ -60,7 +60,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
     implementation ("io.reactivex.rxjava3:rxandroid:3.0.2")
-
+    implementation ("io.reactivex.rxjava2:rxandroid:2.0.1")
+    implementation ("com.squareup.retrofit2:adapter-rxjava2:2.4.0")
+    implementation ("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
     implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version")
     implementation ("io.reactivex.rxjava3:rxjava:3.1.8")
     implementation("androidx.core:core-ktx:1.12.0")
