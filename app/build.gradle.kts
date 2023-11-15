@@ -76,6 +76,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("androidx.activity:activity-ktx:1.8.0")
     //Gson -> json data to java or kotlin format
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -101,7 +102,9 @@ dependencies {
 
     // optional - RxJava3 support for Room
     implementation("androidx.room:room-rxjava3:$room_version")
-
+    implementation("androidx.constraintlayout:constraintlayout:2.2.0-alpha13")
+    // To use constraintlayout in compose
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
 
 
     // optional - Paging 3 Integration
