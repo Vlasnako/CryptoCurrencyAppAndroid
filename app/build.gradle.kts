@@ -52,6 +52,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
     val lifecycle_version = "2.6.2"
     val arch_version = "2.2.0"
 

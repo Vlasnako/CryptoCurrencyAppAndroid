@@ -4,7 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import io.reactivex.annotations.NonNull
+import com.example.cryptocompare.api.ApiFactory
+import com.example.cryptocompare.api.ApiFactory.BASE_IMAGE_URL
+import com.example.cryptocompare.utils.convertTimestampToTime
 
 @Entity(tableName = "full_price_list")
 data class CoinPriceInfo (
@@ -16,7 +18,6 @@ data class CoinPriceInfo (
     @Expose
     var market: String? = null,
 @PrimaryKey
-@NonNull
     @SerializedName("FROMSYMBOL")
     @Expose
     var fromsymbol: String = "",
@@ -200,4 +201,11 @@ data class CoinPriceInfo (
     @SerializedName("IMAGEURL")
     @Expose
     var imageurl: String? = null,
-)
+) {
+    fun getFormattedTime(): String {
+        return convertTimestampToTime(lastupdate?.toLong())
+    }
+    fun getFullImageUrl(): String {
+        return BASE_IMAGE_URL + imageurl
+    }
+}
