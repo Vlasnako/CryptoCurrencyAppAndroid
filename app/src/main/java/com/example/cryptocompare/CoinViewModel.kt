@@ -3,6 +3,7 @@ package com.example.cryptocompare
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import com.example.cryptocompare.api.ApiFactory
 import com.example.cryptocompare.database.AppDataBase
 import com.example.cryptocompare.pojo.CoinPriceInfo
@@ -17,7 +18,13 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
 
     val priceList = db.coinPriceInfoDao().getPriceList()
-    fun loadData() {
+    init {
+        loadData()
+    }
+    fun getDetailInfo(fSym: String): LiveData<CoinPriceInfo> {
+        return db.coinPriceInfoDao().getPriceInfoAboutCoin(fSym)
+    }
+    private fun loadData() {
         val disposable = ApiFactory.apiService.getTopCoinsInfo(limit = 50)
             .map { it.data?.map { it.coinInfo?.name }?.joinToString(",") }
             .flatMap { ApiFactory.apiService.getFullPriceList(fSyms = it) }
@@ -26,6 +33,8 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
             .subscribe({
                 it?.let {
                     db.coinPriceInfoDao().insertPriceList(it)
+                    Log.d("TEST_OF_LOADING_DATA", "SUCCESS: $it")
+
                 }
             }, {
                 it?.let {
